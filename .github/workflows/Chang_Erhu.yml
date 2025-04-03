@@ -1,0 +1,28 @@
+name: Deploy Chang_Erhu Folder
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Show files in audio/Chang_Erhu
+        run: |
+          echo "Listing contents of audio/Chang_Erhu:"
+          ls -l ./audio/Chang_Erhu
+
+      - name: Deploy Chang_Erhu audio to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.TIMBRE }}
+          publish_dir: ./audio/Chang_Erhu
+          destination_dir: audio/Chang_Erhu
+          publish_branch: gh-pages
+          keep_files: true
+          force_orphan: false
