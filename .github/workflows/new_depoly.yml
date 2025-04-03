@@ -19,5 +19,4 @@ jobs:
           publish_dir: ./audio/Piano
           destination_dir: audio/Piano
           publish_branch: gh-pages
-          keep_files: true
           force_orphan: false
