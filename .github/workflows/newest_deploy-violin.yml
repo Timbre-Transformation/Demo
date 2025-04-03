@@ -1,4 +1,4 @@
-name: Deploy Violin Folder
+name: Deploy Full Demo Site
 
 on:
   workflow_dispatch:
@@ -11,11 +11,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Deploy Violin audio to GitHub Pages
+      - name: Deploy full site to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.TIMBRE }}     # 👈 你設定的 secret 名稱
-          publish_dir: ./audio/Violin
-          destination_dir: audio/Violin
-          publish_branch: gh-pages                  # ✅ 正確參數名稱
+          personal_token: ${{ secrets.TIMBRE }}
+          publish_dir: ./
+          publish_branch: gh-pages
           force_orphan: true
