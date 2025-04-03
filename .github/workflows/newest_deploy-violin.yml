@@ -14,8 +14,8 @@ jobs:
       - name: Deploy Violin audio to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.TIMBRE }}  # 👈 你設定的 secret 名稱
+          personal_token: ${{ secrets.TIMBRE }}     # 👈 你設定的 secret 名稱
           publish_dir: ./audio/Violin
           destination_dir: audio/Violin
-          target_branch: gh-pages               # ✅ 關鍵行
+          publish_branch: gh-pages                  # ✅ 正確參數名稱
           force_orphan: true
