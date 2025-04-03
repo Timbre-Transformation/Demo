@@ -12,6 +12,11 @@ jobs:
         with:
           ref: main
 
+      - name: Show files in audio/Piano
+        run: |
+          echo "Listing contents of audio/Piano:"
+          ls -l ./audio/Piano
+
       - name: Deploy Piano audio to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -19,4 +24,5 @@ jobs:
           publish_dir: ./audio/Piano
           destination_dir: audio/Piano
           publish_branch: gh-pages
+          keep_files: true
           force_orphan: false
