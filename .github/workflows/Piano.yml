@@ -1,4 +1,4 @@
-name: Deploy DSK_Erhu Folder
+name: Deploy Piano Folder
 
 on:
   workflow_dispatch:
@@ -12,17 +12,17 @@ jobs:
         with:
           ref: main
 
-      - name: Show files in audio/DSK_Erhu
+      - name: Show files in audio/Piano
         run: |
-          echo "Listing contents of audio/DSK_Erhu:"
-          ls -l ./audio/DSK_Erhu
+          echo "Listing contents of audio/Piano:"
+          ls -l ./audio/Piano
 
-      - name: Deploy DSK_Erhu audio to GitHub Pages
+      - name: Deploy Piano audio to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.TIMBRE }}
-          publish_dir: ./audio/DSK_Erhu
-          destination_dir: audio/DSK_Erhu
+          publish_dir: ./audio/Piano
+          destination_dir: audio/Piano
           publish_branch: gh-pages
           keep_files: true
           force_orphan: false
