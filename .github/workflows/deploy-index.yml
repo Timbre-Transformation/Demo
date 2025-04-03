@@ -12,11 +12,16 @@ jobs:
         with:
           ref: main
 
+      - name: Prepare index.html only
+        run: |
+          mkdir temp-index
+          cp index.html temp-index/
+
       - name: Deploy index.html to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.TIMBRE }}
-          publish_dir: ./
+          publish_dir: ./temp-index
           publish_branch: gh-pages
           keep_files: true
           force_orphan: false
