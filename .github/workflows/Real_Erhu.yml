@@ -25,4 +25,4 @@ jobs:
           destination_dir: audio/Real_Erhu
           publish_branch: gh-pages
           keep_files: true
-          force_orphan: false
+          force_orphan: true
