@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Timbre Transformation Demo</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* 強制顯示 scrollbar 並自訂外觀 */
+    .scrollbar-top {
+      overflow-x: scroll;
+      scrollbar-gutter: stable;
+    }
+
+    .scrollbar-top::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .scrollbar-top::-webkit-scrollbar-thumb {
+      background-color: rgba(100, 100, 100, 0.5);
+      border-radius: 4px;
+    }
+
+    .scrollbar-top::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+  </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans flex flex-col items-center p-6 min-h-screen">
   <div class="w-full max-w-7xl">
-    <!-- Abstract -->
-    <h1 class="text-3xl font-bold mb-4 text-center">Abstract</h1>
-    <p class="mb-10 text-gray-700 text-center">(To be added...)</p>
 
     <!-- Demo Title -->
     <h2 class="text-3xl font-bold mb-6 text-center">Timbre Transformation Demo</h2>
+    <p class="text-center text-gray-600 mb-6">（Swipe right to see more timbres）</p>
 
-    <!-- Table -->
-    <div class="overflow-x-auto">
-      <table class="table-auto w-full border border-gray-300 text-sm">
-
+    <!-- Table with real scrollbar shown on top -->
+    <div class="scrollbar-top rotate-180">
+      <table class="table-auto min-w-[1600px] border border-gray-300 text-sm rotate-180">
         <thead>
           <tr class="bg-gray-200">
             <th class="p-2 border">Sample #</th>
@@ -31,33 +48,35 @@
             <th class="p-2 border">AI_Erhu_without_Loudness_Encoder</th>
           </tr>
         </thead>
-        <tbody>
-        </tbody>
+        <tbody id="audioBody"></tbody>
       </table>
     </div>
   </div>
 
   <script>
     const skips = [61, 67, 69, 70, 93, 95, 104, 105];
-    const tbody = document.querySelector('tbody');
-
+    const tbody = document.getElementById('audioBody');
+  
+    let displayIndex = 1;
     for (let i = 51; i <= 108; i++) {
       if (skips.includes(i)) continue;
-
+  
       const row = document.createElement('tr');
       row.classList.add('even:bg-gray-50');
       row.innerHTML = `
-        <td class="p-2 border text-center font-medium">${i}</td>
-        <td class="p-2 border"><audio controls src="audio/Real_Erhu/${i}.wav"></audio></td>
-        <td class="p-2 border"><audio controls src="audio/AI_Erhu/model_${i}_p.wav"></audio></td>
-        <td class="p-2 border"><audio controls src="audio/Chang_Erhu/${i}_ke.wav"></audio></td>
-        <td class="p-2 border"><audio controls src="audio/DSK_Erhu/${i}_de.wav"></audio></td>
-        <td class="p-2 border"><audio controls src="audio/Violin/${i}_v.wav"></audio></td>
-        <td class="p-2 border"><audio controls src="audio/Piano/${i}_p.wav"></audio></td>
-        <td class="p-2 border"><audio controls src="audio/AI_Erhu_without_Loudness_Encoder/${i}_p_converted.wav"></audio></td>
+        <td class="p-2 border text-center font-medium">${displayIndex}</td>
+        <td class="p-2 border"><audio controls preload="none" src="audio/Real_Erhu/${i}.wav"></audio></td>
+        <td class="p-2 border"><audio controls preload="none" src="audio/AI_Erhu/model_${i}_p.wav"></audio></td>
+        <td class="p-2 border"><audio controls preload="none" src="audio/Chang_Erhu/${i}_ke.wav"></audio></td>
+        <td class="p-2 border"><audio controls preload="none" src="audio/DSK_Erhu/${i}_de.wav"></audio></td>
+        <td class="p-2 border"><audio controls preload="none" src="audio/Violin/${i}_v.wav"></audio></td>
+        <td class="p-2 border"><audio controls preload="none" src="audio/Piano/${i}_p.wav"></audio></td>
+        <td class="p-2 border"><audio controls preload="none" src="audio/AI_Erhu_without_Loudness_Encoder/${i}_p_converted.wav"></audio></td>
       `;
       tbody.appendChild(row);
+      displayIndex++;
     }
   </script>
+  
 </body>
 </html>
