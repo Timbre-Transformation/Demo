@@ -6,7 +6,6 @@
   <title>Timbre Transformation Demo</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* 強制顯示 scrollbar 並自訂外觀 */
     .scrollbar-top {
       overflow-x: scroll;
       scrollbar-gutter: stable;
@@ -28,12 +27,10 @@
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans flex flex-col items-center p-6 min-h-screen">
   <div class="w-full max-w-7xl">
-
-    <!-- Demo Title -->
-    <h2 class="text-3xl font-bold mb-6 text-center">Timbre Transformation Demo</h2>
+    <h2 class="text-3xl font-bold mb-2 text-center">Timbre Transformation Demo</h2>
     <p class="text-center text-gray-600 mb-6">（Swipe right to see more timbres）</p>
 
-    <!-- Table with real scrollbar shown on top -->
+    <!-- Scrollable table with scrollbar on top -->
     <div class="scrollbar-top rotate-180">
       <table class="table-auto min-w-[1600px] border border-gray-300 text-sm rotate-180">
         <thead>
@@ -56,11 +53,11 @@
   <script>
     const skips = [61, 67, 69, 70, 93, 95, 104, 105];
     const tbody = document.getElementById('audioBody');
-  
+
     let displayIndex = 1;
     for (let i = 51; i <= 108; i++) {
       if (skips.includes(i)) continue;
-  
+
       const row = document.createElement('tr');
       row.classList.add('even:bg-gray-50');
       row.innerHTML = `
@@ -76,7 +73,12 @@
       tbody.appendChild(row);
       displayIndex++;
     }
+
+    // 修正開啟頁面時 scroll 在最右邊 → 移到最左
+    window.addEventListener('DOMContentLoaded', () => {
+      const scrollContainer = document.querySelector('.scrollbar-top');
+      scrollContainer.scrollLeft = scrollContainer.scrollWidth;
+    });
   </script>
-  
 </body>
 </html>
